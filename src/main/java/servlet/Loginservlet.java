@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/Loginservlet")
 public class Loginservlet extends HttpServlet {
+	
+	
+	
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -51,7 +55,10 @@ public class Loginservlet extends HttpServlet {
 		//ServletContext sc=getServletContext();
 		try
 		{
-			String connectionUrl = "jdbc:sqlserver://HYL-777749\\SQL2K2019DEV:1433;databaseName=MYDB;user=hsi;password=wstinol";
+			Properties properties=new Properties();
+			properties.load(getServletContext().getResourceAsStream("/WEB-INF/properties/sample.properties"));
+			String connectionUrl = (String) properties.get("spring.datasource.url");
+			//String connectionUrl = "jdbc:sqlserver://HYL-777749\\SQL2K2019DEV:1433;databaseName=MYDB;user=hsi;password=wstinol";
 			//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","MYDB","admin");
 			Connection con=DriverManager.getConnection(connectionUrl);
 				if(con==null)
