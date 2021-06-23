@@ -55,11 +55,7 @@ public class Loginservlet extends HttpServlet {
 		//ServletContext sc=getServletContext();
 		try
 		{
-			//Properties properties=new Properties();
-			//properties.load(getServletContext().getResourceAsStream("/WEB-INF/properties/sample.properties"));
-			//String connectionUrl = (String) properties.get("spring.datasource.url");
-			//String connectionUrl = "jdbc:sqlserver://HYL-777749\\SQL2K2019DEV:1433;databaseName=MYDB;user=hsi;password=wstinol";
-			//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","MYDB","admin");
+			
 String connectionUrl = System.getenv("JDBC_DATABASE_URL");
 			Connection con=DriverManager.getConnection(connectionUrl);
 				if(con==null)
